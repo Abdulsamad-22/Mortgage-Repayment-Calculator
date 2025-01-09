@@ -12,6 +12,11 @@ header{
     column-count: 2;
 }
 
+.clearAll-button{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
 .amount-input-container{
     display: flex;
     flex-direction: column;
@@ -41,6 +46,10 @@ header{
     flex-direction: column;
     margin-bottom: 0.5rem;
     padding-bottom: 0.5rem;
+}
+
+.active{
+    background-color: burlywood;
 }
 
 .calculate-button{
