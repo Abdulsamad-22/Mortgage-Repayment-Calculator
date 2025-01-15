@@ -18,12 +18,13 @@ input[type="number"]::-webkit-inner-spin-button {
 
 .calculator-platform{
     display: flex;
-    max-width: 100%;
+    width: 80%;
     background-color: hsl(0, 0%, 100%);
 }
 
 .form-section{
-    max-width: 80%;
+    width: 50%;
+    padding: 2.25rem;
 }
 
 header{
@@ -93,12 +94,12 @@ header{
 
 .suffix{
     position: absolute;
-    top: 0.08rem;
-    right: .08rem;
+    top: 0.06rem;
+    right: .06rem;
     color: hsl(187, 24%, 22%);
     background-color: hsl(202, 86%, 94%);
     border-radius: 0 8px 8px 0;
-    padding: 0.73rem 1rem;
+    padding: 0.65rem 1rem;
     cursor: pointer;
     margin-bottom: 0.25rem;
 }
@@ -108,6 +109,8 @@ header{
     flex-direction: column;
     margin-top: 1rem;
     padding-bottom: 0.5rem;
+    
+    border: none;
 }
 
 .type-container{
@@ -199,7 +202,7 @@ header{
 }
 
 .results-section{
-    max-width: 40%;
+    width: 50%;
     place-items: center;
     background-color: hsl(202, 55%, 16%);
     border-radius: 0 12px 12px 64px;
@@ -229,7 +232,8 @@ header{
     border-radius: 12px;
     background-color: hsl(202, 70%, 21%);
     padding: 1rem;
-    max-width: 35%;
+    width: 50%;
+    border-radius: 0 12px 12px 64px;
 }
 
 .results-container2 h2{
@@ -296,5 +300,6 @@ header{
 }
 
 .suffix-error{
+    color: white;
     background-color: hsl(4, 69%, 50%);
 }
