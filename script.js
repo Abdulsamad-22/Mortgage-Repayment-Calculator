@@ -1,51 +1,61 @@
 const calculateButton = document.querySelector('.calculate-button');
 
-const clearButton = document.querySelector('.clearAll-button');
+let resultSection = document.querySelector('.results-section');
+const clearButton = document.querySelector('.clear-all');
 
-clearButton.addEventListener('click', () => {
-    console.log('clear all');
-});
+const container = document.querySelector('.form-group');
+const termContainer = document.querySelector('.term-container');
+const rateContainer = document.querySelector('.rate-container');
+const mortgageContainer = document.querySelector('.mortgage-types');
+const currencySymbol = document.querySelector('.currency-symbol');
+const suffix = document.querySelectorAll('.suffix');
+setupActiveRadio();
 
 calculateButton.addEventListener('click', () => {
     event.preventDefault();
     console.log('hello');
     validateInputs();
     checksActiveRadio();
-    setupActiveRadio();
+    //setupActiveRadio();
 });
 
 function validateInputs() {
     const mortgageAmount = document.querySelector('.mortgage-amount');
     const mortgageTerm = document.querySelector('.term-input');
     const interestRate = document.querySelector('.interest-input');
-    const radioButtons = document.querySelectorAll('.js-radio');
+    //const radioButtons = document.querySelectorAll('.js-radio');
 
     const amountInput = mortgageAmount.value.trim();
     const termInput = mortgageTerm.value.trim();
     const rateInput = interestRate.value.trim();
 
 
-    const container = document.querySelector('.amount-input-container');
-    const termContainer = document.querySelector('.term-container');
-    const rateContainer = document.querySelector('.rate-container');
-    const radioContainers = document.querySelectorAll('.type-container');
-    //const mortgageContainer = document.querySelector('.mortgage-types');
+    suffix.forEach((suffix, index) => {
+        suffix.classList.add(`suffix-error`);
+    });
+
     container.querySelectorAll('.error').forEach(msg => {msg.remove();});
     termContainer.querySelectorAll('.error').forEach(msg => {msg.remove();});
     rateContainer.querySelectorAll('.error').forEach(msg => {msg.remove();});
 
-    if (amountInput === '') {
-        displayError(container, 'this field is required');
+    if (amountInput === '' || amountInput < 0) {
+        displayError(container, 'This field is required');
+        mortgageAmount.classList.add('input-error');
+        currencySymbol.style.backgroundColor = 'hsl(4, 69%, 50%)';
     }
 
-    if (termInput === '') {
-        displayError(termContainer, 'this field is required');
+    if (termInput === '' || termInput < 0) {
+        displayError(termContainer, 'This field is required');
+        mortgageTerm.classList.add('input-error');
     }
 
-    if (rateInput === '') {
-        displayError(rateContainer, 'this field is required');
+    if (rateInput === '' || rateInput < 0) {
+        displayError(rateContainer, 'This field is required');
+        interestRate.classList.add('input-error');
     }
 }
+
+//const inputFieldsValid = !validateInputs();
 
 function setupActiveRadio() {
     const radioButtons = document.querySelectorAll('.js-radio');
@@ -65,7 +75,12 @@ function setupActiveRadio() {
     });
 }
 
-function checksActiveRadio() {
+const resultContainer = document.createElement('div');
+resultContainer.classList.add('result-page');
+let resultsWrapper = document.querySelector('.results-container2');
+resultsWrapper.style.display = 'none';
+
+function checksActiveRadio() { 
     const mortgageAmount = document.querySelector('.mortgage-amount');
     const mortgageTerm = document.querySelector('.term-input');
     const interestRate = document.querySelector('.interest-input');
@@ -73,11 +88,12 @@ function checksActiveRadio() {
     const amountInput = mortgageAmount.value.trim();
     const termInput = mortgageTerm.value.trim();
     const rateInput = interestRate.value.trim();
+
     const radioButtons = document.querySelectorAll('.js-radio');
     const mortgageContainer = document.querySelector('.mortgage-types');
 
     mortgageContainer.querySelectorAll('.error').forEach(msg => {msg.remove();});
-
+    
     // Check if any radio button is selected
     const isChecked = Array.from(radioButtons).some(radio => radio.checked);
 
@@ -85,23 +101,43 @@ function checksActiveRadio() {
 
     const result = Number(rateInput / 12) * 0.01;
     const term = Number(termInput * 12);
-    const repaymentFee = (1 + result);
-    const total = power(repaymentFee, term);
+    const rateCalc = (1 + result);
+    const total = power(rateCalc, term);
     const times = amountInput * result * total
     const numerator = times;
     const total2 =  power((1 + result), term) - 1;
-    const mortgageTotal = (numerator / total2).toFixed(2);
 
-    //const radioContainers = document.querySelectorAll('.type-container');
+    let monthlyRepayment = (numerator / total2).toFixed(2);
+    let totalRepaymentFee = (monthlyRepayment * term).toFixed(2);
+
+    //const formatRepayment = formattedNumber(number);
+    //formatTotal = formattedNumber(number);
+
+    const fee =document.querySelector('.monthly-amount');
+
+    let option1 = '';
+    let option2 = '';
+
     radioButtons.forEach((radio, index) => {
         if (radio.checked && index === 0) {
-            console.log(mortgageTotal);
-            console.log(mortgageTotal * term);
+            // Repayment fee total calculation
+            option1 = 'repayments';
+            option2= ` you'll repay`;
+            monthlyRepayment;
+            totalRepaymentFee;
+            console.log(monthlyRepayment);
+            console.log(totalRepaymentFee);
 
         } else if (radio.checked && index === 1) {
+            // Interest fee total calculation
+            monthlyRepayment = (((monthlyRepayment * term) - amountInput) / term).toFixed(2);
+            totalRepaymentFee = (totalRepaymentFee - amountInput).toFixed(2);
+
             console.log('interest only');
-            console.log((mortgageTotal * term) - amountInput);
-            console.log(((mortgageTotal * term) - amountInput) / term);
+            option1 = 'interest';
+            option2 = `interest`;
+            console.log((monthlyRepayment * term) - amountInput);
+            console.log(((monthlyRepayment * term) - amountInput) / term);
         }
     });
 
@@ -110,7 +146,98 @@ function checksActiveRadio() {
         //return false;
        
     }
+
+        resultContainer.innerHTML = `
+            <h2>
+                Your results
+            </h2>
+
+            <p>
+                Your results are shown below based on the information you provided. 
+                To adjust the results, edit the form and click “calculate repayments” again.
+            </p>
+
+            <div class="fee-section">
+                <section class="monthly-section">
+                    <p class="monthly-desc">
+                        Your monthly ${option1}
+                    </p>
+
+                    <h3 class="monthly-amount">
+                        &#163;${monthlyRepayment}
+                    </h3>
+                </section>
+
+                <hr class="divider">
+
+                <section class="total-section">
+                    <p class="total-desc">
+                        Total ${option2} over the term
+                    </p>
+
+                    <h3 class="total-amount">
+                        &#163;${totalRepaymentFee}
+                    </h3>
+                </section>
+            </div>
+        `;
+
+        resultsWrapper.innerHTML = '';
+
+        if (amountInput < 0 || termInput < 0 || rateInput < 0) {
+            console.log('invalid input');
+            return;
+        }
+
+    if (amountInput && termInput && rateInput && isChecked) {
+        console.log('successful');
+        resultSection.style.display = 'none';
+        resultsWrapper.style.display = 'block';
+
+        mortgageAmount.classList.remove('input-error');
+        mortgageTerm.classList.remove('input-error');
+        interestRate.classList.remove('input-error');
+        currencySymbol.style.backgroundColor = 'hsl(202, 86%, 94%)';
+
+        suffix.forEach((suffix, index) => {
+            suffix.classList.remove(`suffix-error`);
+        });
+        
+        resultsWrapper.appendChild(resultContainer);
+    }
 }
+
+clearButton.addEventListener('click', () => {
+    const mortgageAmount = document.querySelector('.mortgage-amount');
+    const mortgageTerm = document.querySelector('.term-input');
+    const interestRate = document.querySelector('.interest-input');
+
+    console.log('clear all');
+    mortgageAmount.value = '';
+    mortgageTerm.value = '';
+    interestRate.value = '';
+
+    mortgageAmount.classList.remove('input-error');
+    mortgageTerm.classList.remove('input-error');
+    interestRate.classList.remove('input-error');
+
+
+    mortgageContainer.querySelectorAll('.error').forEach(msg => {msg.remove();});
+    container.querySelectorAll('.error').forEach(msg => {msg.remove();});
+    termContainer.querySelectorAll('.error').forEach(msg => {msg.remove();});
+    rateContainer.querySelectorAll('.error').forEach(msg => {msg.remove();});
+
+    suffix.forEach((suffix, index) => {
+        suffix.classList.remove(`suffix-error`);
+    });
+
+    currencySymbol.style.backgroundColor = 'hsl(202, 86%, 94%)';
+
+    resultSection.style.display = 'block';
+    resultsWrapper.style.display = 'none';
+    //resultContainer.remove();
+});
+
 
 function power(base, exponential) {
     let result = 1;
@@ -128,6 +255,24 @@ function power(base, exponential) {
     }
     return result;
 }
+
+function formattedNumber(number) {
+    let str = number.toString();
+    const groups = [];
+    while(str.length > 3){
+        groups.unshift(str.slice(-3));
+        str = str.slice(0, -3);
+    }
+
+    groups.unshift(str);
+
+    str = groups.join(',');
+    return str;
+}
+
+let nums = 122791 + 12;
+console.log(formattedNumber(nums));
+console.log(formattedNumber(1234));
 
 function displayError(container, message) {
     const errorMessage = document.createElement('p');

@@ -4,56 +4,297 @@
     box-sizing: border-box;
 }
 
-.form{
-    max-width: 60%;
+body{
+    font-family: "Plus Jakarta Sans", serif;
+    background-color: hsl(202, 86%, 94%);
+}
+
+/* For Chrome, Safari, Edge, Opera */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.calculator-platform{
+    display: flex;
+    max-width: 100%;
+    background-color: hsl(0, 0%, 100%);
+}
+
+.form-section{
+    max-width: 80%;
 }
 
 header{
     column-count: 2;
 }
 
-.clearAll-button{
-    text-decoration: underline;
-    cursor: pointer;
+.clear-all{
+    color: forestgreen;
+}
+
+
+.input-container{
+    position: relative;
+    display: flex;
+    align-items: center;
+    /*min-width: fit-content;*/
+}
+
+.mortgage-amount{
+    width: 80%;
+    border: 1px solid #dddddd;
+    border-radius: 8px;
+    padding: 0.75rem 1rem 0.75rem 2.25rem;
+    font-size: 1rem;
 }
 
 .amount-input-container{
     display: flex;
     flex-direction: column;
+    margin-top: 1rem;
 }
 
 .term-rate-containers{
     display: flex;
     align-items: flex-start;
     gap: 10px;
-    max-width: 100%;
-    margin-bottom: 0.5rem;
+    width: 80%;
+    margin-top: 1rem;
     padding-bottom: 0.5rem;
 }
 
-.mortgage-amount, .term-input, .interest-input, .type-container{
-    color: hsl(187, 24%, 22%);
-    min-width: 100px;
-    border-radius: 4px;
-    border: 1px solid hsl(186, 15%, 59%);
-    padding: 0.5625rem 0.75rem;
-    cursor: pointer;
-    margin-bottom: 0.5rem;
+.term-container, .rate-container{
+    width: fit-content;
 }
 
-.mortgage-type-container{
+.field-labels{
+    margin-bottom: 0.5rem;
+    color: hsl(202, 55%, 16%);
+}
+
+.input-container .currency-symbol{
+    position: absolute;
+    color: hsl(187, 24%, 22%);
+    background-color: hsl(202, 86%, 94%);
+    padding: 0.73rem 0.75rem;
+    cursor: pointer;
+}
+
+
+.term-input, .interest-input{
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #dddddd;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+.suffix{
+    position: absolute;
+    top: 0.08rem;
+    right: .08rem;
+    color: hsl(187, 24%, 22%);
+    background-color: hsl(202, 86%, 94%);
+    border-radius: 0 8px 8px 0;
+    padding: 0.73rem 1rem;
+    cursor: pointer;
+    margin-bottom: 0.25rem;
+}
+
+.mortgageType-container{
     display: flex;
     flex-direction: column;
-    margin-bottom: 0.5rem;
+    margin-top: 1rem;
     padding-bottom: 0.5rem;
+}
+
+.type-container{
+    color: hsl(187, 24%, 22%);
+    max-width: 80%;
+    border: 1px solid hsl(186, 15%, 59%);
+    border-radius: 4px;
+    padding: 0.5625rem 0.75rem;
+    cursor: pointer;
+    margin-bottom: 0.25rem;
+}
+
+.radio{
+    width: 14px;
+    height: 14px;
+    border-radius: 7px;
+    border: 2px solid rgb(156, 155, 155);
+    position: relative;
+
+    appearance: none; 
+   -webkit-appearance: none;
+    background-color: #ffffff;
+    cursor: pointer;
+}
+
+/* Custom color when selected */
+.radio:checked {
+    border-color: hsl(61, 70%, 52%);
+  }
+
+  .radio:checked::before {
+    content: '';
+    display: block;
+    width: 6px; /* Size of the inner circle (smaller than outer circle) */
+    height: 6px;
+    background-color: hsl(61, 70%, 52%); /* Inner circle color */
+    border-radius: 4px; 
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+  }
+  
+  /* Create an inner circle for the checked radio */
+  .radio:checked::after {
+    content: '';
+    display: block;
+    width: 0px;
+    height: 0px;
+    background-color: #f2f3f2;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+  }
+
+.mortgage-types{
+    margin-top: 0rem;
+}
+
+.type-container{
+    margin-top: 0.75rem;
 }
 
 .active{
-    background-color: burlywood;
+    background-color: hsl(65, 55%, 91%);
+    border: 1px solid hsl(61, 70%, 52%);
 }
 
 .calculate-button{
-    min-width: 100%;
-    padding: 0.5625rem 0.75rem;
+    display: flex;
     align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-width: 50%;
+    color: hsl(202, 55%, 16%);
+    padding: 0.5625rem 0.75rem;
+    border-radius: 24px;
+    border: none;
+    background-color: hsl(61, 70%, 52%);
+    cursor: pointer;
+}
+
+@media (hover:hover) {
+    .calculate-button:hover{
+        background-color: hsla(61, 70%, 52%, 0.705);
+    }
+}
+
+.results-section{
+    max-width: 40%;
+    place-items: center;
+    background-color: hsl(202, 55%, 16%);
+    border-radius: 0 12px 12px 64px;
+}
+
+.no-result-text{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.results-section h2{
+    color: white;
+}
+
+
+.no-result-text p{
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: hsl(200, 26%, 54%);
+    margin-top: 0.75rem;
+    max-width: 70%;
+    text-align: center;
+}
+
+.results-container2{
+    border-radius: 12px;
+    background-color: hsl(202, 70%, 21%);
+    padding: 1rem;
+    max-width: 35%;
+}
+
+.results-container2 h2{
+    color: rgb(248, 247, 246);
+    margin-bottom: 1rem;
+}
+
+.results-container2 p{
+    font-size: 0.9rem;
+    color: hsl(203, 41%, 72%);
+    line-height: 1.8;
+    max-width: 85%;
+}
+
+.fee-section{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+    gap: 20px;
+    max-width: 70%;
+    padding: 16px;
+    border-radius: 18px;
+    border-top: 4px solid hsl(61, 70%, 52%);
+    height: auto;
+    background-color: hsl(202, 55%, 16%);
+    margin-top: 1rem;
+}
+
+.divider{
+    border: 0.8px solid rgb(110, 110, 110);
+    min-width: 100%;
+}
+
+.monthly-section, .total-section{
+    min-width: 100%;
+}
+
+.monthly-desc, .total-desc{
+    font-size: 0.75rem;
+    color: hsl(200, 24%, 40%);
+}
+
+.monthly-amount{
+    font-size: 2.5rem;
+    margin-top: 0.25rem;
+    width: 100%;
+    color: hsl(61, 70%, 52%);
+}
+
+.total-amount{
+    font-size: 1.5rem;
+    margin-top: 0.5rem;
+    color: hsl(0, 0%, 100%);
+}
+
+.error{
+    font-size: 0.75rem;
+    color: hsl(4, 69%, 50%);
+}
+
+.input-error{
+    border: 1px solid hsl(4, 69%, 50%);
+}
+
+.suffix-error{
+    background-color: hsl(4, 69%, 50%);
 }

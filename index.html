@@ -4,6 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" type="text/css" href="style.css">
 
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
@@ -18,109 +22,112 @@
 </head>
 <body>
 
-  <main>
-    <header>
-      <h1>
-        Mortgage Calculator
-      </h1>
-
-      <span class="clearAll-button">
-        Clear All
-      </span>
-    </header>
-
-    <form class="form" for="mortgage">
-      <div class="amount-input-container">
-        <label class="field-labels">
-          Mortgage Amount
-        </label>
+  <main class="calculator-platform">
+    <section class="form-section">
+      <header>
+        <h1>
+          Mortgage Calculator
+        </h1>
   
-        <span></span><input class="mortgage-amount" type="number">
+        <a href="#" class="clear-all">Clear All</a>
+      </header>
+
+        <div class="form-group">
+          <label for="field-labels">Mortgage Amount</label>
+          <div class="input-container">
+              <span class="currency-symbol">£</span>
+              <input type="number" class="mortgage-amount" name="mortgage-amount">
+          </div>
       </div>
 
-      <div class="term-rate-containers">
-        <div class="term-container">
+        <!--<div class="amount-input-container">
           <label class="field-labels">
-            Mortgage Term
+            <span class="years">Years</span>Mortgage Amount
           </label>
-
-          <input class="term-input" type="number">
-        </div>
-
-        <div class="rate-container">
-          <label class="field-labels">
-            Interest Rate
-          </label>
-
-          <input class="interest-input" type="number">
-        </div>
-      </div>
-
-      <div class="mortgageType-container">
-        <label class="field-labels">
-          Mortgage Type
-        </label>
-
-        <div class="mortgage-types">
-          <div class="type-container">
-            <label class="test-holder">
-             <input class="js-radio radio" type="radio" name="query" value="">
+    
+          <input class="mortgage-amount" type="number">
+        </div>-->
+  
+        <div class="term-rate-containers">
+          <div class="term-container">
+            <label class="field-labels">
+              Mortgage Term
             </label>
-            Repayment
+
+            <div class="input-container">
+              <input class="term-input" type="number" name="mortgage-term">
+              <span class="suffix">years</span>
           </div>
   
-          <div class="type-container">
-            <label class="test-holder">
-              <input class="js-radio radio" type="radio" name="query" value="">
+            <!--<input class="term-input" type="number">-->
+          </div>
+  
+          <div class="rate-container">
+            <label class="field-labels">
+              Interest Rate
             </label>
-            Interest Only
+
+            <div class="input-container">
+              <input class="interest-input" type="number" name="interet-rate">
+              <span class="suffix">%</span>
+            </div>
           </div>
         </div>
-      </div>
-
-      <button class="calculate-button">
-        <img class="calculator-icon" src="assets/images/icon-calculator.svg" alt="calculator icon">
-        Calculate Repayments
-      </button>
-    </form>
+  
+        <div class="mortgageType-container">
+          <label class="field-labels">
+            Mortgage Type
+          </label>
+  
+          <div class="mortgage-types">
+            <div class="type-container">
+              <label class="test-holder">
+               <input class="js-radio radio" type="radio" name="query" value="">
+              </label>
+              Repayment
+            </div>
+    
+            <div class="type-container">
+              <label class="test-holder">
+                <input class="js-radio radio" type="radio" name="query" value="">
+              </label>
+              Interest Only
+            </div>
+          </div>
+        </div>
+  
+        <button class="calculate-button">
+          <img class="calculator-icon" src="assets/images/icon-calculator.svg" alt="calculator icon">
+          Calculate Repayments
+        </button>
+      </form>
+    </section>
 
     <section class="results-section">
       <div class="noResult-image-container">
         <img class="empty-state" src="assets/images/illustration-empty.svg" alt="empty illustraion">
       </div>
 
-      <h2>
-        Results shown here
-      </h2>
-
-      <p>
-        Complete the form and click “calculate repayments” to see what 
-        your monthly repayments would be.
-      </p>
-    </section>
-  </main>
-
-  <!-- Empty results start -->
-
-  <!-- Empty results end -->
-
-  <!-- Completed results start 
-
-  Your results
-
-  Your results are shown below based on the information you provided. 
-  To adjust the results, edit the form and click “calculate repayments” again.
-
-  Your monthly repayments
-
-  Total you'll repay over the term-->
-
-  <!-- Completed results end -->
+      <div class="no-result-text">
+        <h2>
+          Results shown here
+        </h2>
   
+        <p class="desc">
+          Complete the form and click “calculate repayments” to see what 
+          your monthly repayments would be.
+        </p>
+      </div>
+    </section>
+    <div class="results-container2"></div>
+  </main>
+  
+  <!--
   <div class="attribution">
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>. 
     Coded by <a href="#">Abdulsamad</a>.
   </div>
+  -->
   <script src="script.js"></script>
 </body>
 </html>
