@@ -23,6 +23,7 @@ input[type="number"]::-webkit-inner-spin-button {
 .calculator-platform{
     display: flex;
     width: 70%;
+    height: 100%;
     background-color: hsl(0, 0%, 100%);
     border-radius: 24px;
 }
@@ -96,7 +97,6 @@ header{
 }
 
 .field-labels{
-    margin-bottom: 0.5rem;
     color: hsl(202, 55%, 16%);
 }
 
@@ -334,11 +334,37 @@ header{
         width: 100%;
     }
 
-    .form-section, .results-section, .results-container2, .fee-section, .calculate-button{
+    .form-section, header, .results-section, .results-container2, .fee-section, .calculate-button, .term-rate-containers, .type-container, .mortgage-amount{
         width: 100%;
     }
 
-    .header h1 {
-        font-size: 12px;
+    .form-section{
+        padding: 2rem 1.5rem;
+        /* margin-bottom: 2rem; */
+    }
+
+    .title {
+        font-size: 1.125rem;
+    }
+
+    .field-labels, .currency-symbol, .suffix, .type-container {
+        font-size: 0.875rem;
+    }
+
+    .form-group, .term-rate-containers, .mortgageType-container{
+        margin-bottom: 0.75rem;
+    }
+
+    .results-section, .results-container2 {
+        border-radius: 0;
+        padding: 2rem 1.5rem;
+    }
+
+    .results-container2 p{
+        max-width: 85%;
+    }
+
+    .monthly-amount{
+        font-size: 2em;
     }
 }
