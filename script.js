@@ -23,6 +23,17 @@
         checksActiveRadio();
     });
 
+    addEventListener('keydown', (event) => {
+        keySubmit(event);
+    });
+
+    function keySubmit(event) {
+        if (event.key === "Enter") {
+            validateInputs();
+            checksActiveRadio();
+        }
+    }
+
     function validateInputs() {
         const mortgageAmount = document.querySelector('.mortgage-amount');
         const mortgageTerm = document.querySelector('.term-input');
@@ -86,6 +97,14 @@
                     radioContainers[index].classList.add('active');
                 }
             });
+
+            if (radioContainers[index]) {           
+                    radioContainers[index].addEventListener('click', () => {
+                        radioContainers.forEach(container => container.classList.remove('active'));
+                        radioContainers[index].classList.add('active');
+                        radio.checked = true;
+                });
+            }
         });
     }
 
@@ -148,6 +167,8 @@
                 console.log('Total Repayment Fee:', formattedTotalRepaymentFee);
 
             } else if (radio.checked && index === 1) {
+                option1 = 'interest';
+                option2= `interest`;
                 // Interest fee total calculation
                 monthlyRepayment = (((monthlyRepayment * term) - amountInput) / term).toFixed(2);
                 totalRepaymentFee = (totalRepaymentFee - amountInput).toFixed(2);
@@ -264,7 +285,7 @@
 
         currencySymbol.style.backgroundColor = 'hsl(202, 86%, 94%)';
 
-        resultSection.style.display = 'block';
+        resultSection.style.display = 'flex';
         resultsWrapper.style.display = 'none';
     }
 
@@ -287,22 +308,28 @@
     }
 
     function formattedNumber(number) {
-        let str = number.toString();
+        const numberBeforeDecimal = `${number}`.indexOf(".");
+        const wholeNumber =
+            numberBeforeDecimal !== -1
+                ? number.slice(0, numberBeforeDecimal)
+                : number;
+
+        const decimalNumber = 
+            numberBeforeDecimal !== -1 ?
+            number.slice(numberBeforeDecimal) : "";
+
+        let str = wholeNumber.toString();
         const groups = [];
         while(str.length > 3){
-            groups.unshift(str.slice(-3));
-            str = str.slice(0, -3);
+                groups.unshift(str.slice(-3));
+                str = str.slice(0, -3);
         }
 
         groups.unshift(str);
 
         str = groups.join(',');
-        return str;
+        return str + decimalNumber;
     }
-
-    let nums = 122791 + 12;
-    console.log(formattedNumber(nums));
-    console.log(formattedNumber(1234));
 
     function displayError(container, message) {
         const errorMessage = document.createElement('p');

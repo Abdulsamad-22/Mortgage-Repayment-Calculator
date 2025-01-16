@@ -5,6 +5,10 @@
 }
 
 body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
     font-family: "Plus Jakarta Sans", serif;
     background-color: hsl(202, 86%, 94%);
 }
@@ -18,21 +22,31 @@ input[type="number"]::-webkit-inner-spin-button {
 
 .calculator-platform{
     display: flex;
-    width: 80%;
+    width: 70%;
     background-color: hsl(0, 0%, 100%);
+    border-radius: 24px;
 }
 
 .form-section{
     width: 50%;
-    padding: 2.25rem;
+    padding: 1.25rem;
 }
 
 header{
-    column-count: 2;
+    display: flex;
+    align-items: center;
+    width: 90%;
+    justify-content: space-between;
+    margin-bottom: 2.5rem;
+}
+
+.header h1 {
+    font-size: 2rem;
+    color: hsl(202, 55%, 16%);
 }
 
 .clear-all{
-    color: forestgreen;
+    color: hsl(200, 24%, 40%);
 }
 
 
@@ -44,11 +58,22 @@ header{
 }
 
 .mortgage-amount{
-    width: 80%;
+    width: 90%;
     border: 1px solid #dddddd;
     border-radius: 8px;
-    padding: 0.75rem 1rem 0.75rem 2.25rem;
+    padding: 0.75rem 0.75rem 0.75rem 3.5rem;
     font-size: 1rem;
+}
+
+
+.input-container .currency-symbol{
+    position: absolute;
+    left: 0.05rem;
+    color: hsl(187, 24%, 22%);
+    background-color: hsl(202, 86%, 94%);
+    border-radius: 8px 0 0 8px;
+    padding: 0.63rem 0.875rem;
+    cursor: pointer;
 }
 
 .amount-input-container{
@@ -61,7 +86,7 @@ header{
     display: flex;
     align-items: flex-start;
     gap: 10px;
-    width: 80%;
+    width: 90%;
     margin-top: 1rem;
     padding-bottom: 0.5rem;
 }
@@ -74,15 +99,6 @@ header{
     margin-bottom: 0.5rem;
     color: hsl(202, 55%, 16%);
 }
-
-.input-container .currency-symbol{
-    position: absolute;
-    color: hsl(187, 24%, 22%);
-    background-color: hsl(202, 86%, 94%);
-    padding: 0.73rem 0.75rem;
-    cursor: pointer;
-}
-
 
 .term-input, .interest-input{
     width: 100%;
@@ -115,9 +131,9 @@ header{
 
 .type-container{
     color: hsl(187, 24%, 22%);
-    max-width: 80%;
+    width: 90%;
     border: 1px solid hsl(186, 15%, 59%);
-    border-radius: 4px;
+    border-radius: 8px;
     padding: 0.5625rem 0.75rem;
     cursor: pointer;
     margin-bottom: 0.25rem;
@@ -202,8 +218,13 @@ header{
 }
 
 .results-section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    gap: 2rem;
     width: 50%;
-    place-items: center;
     background-color: hsl(202, 55%, 16%);
     border-radius: 0 12px 12px 64px;
 }
@@ -212,19 +233,20 @@ header{
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 85%;
 }
 
 .results-section h2{
+    font-size: 1.25rem;
     color: white;
 }
 
 
-.no-result-text p{
+.desc {
     font-size: 0.875rem;
     line-height: 1.5;
     color: hsl(200, 26%, 54%);
     margin-top: 0.75rem;
-    max-width: 70%;
     text-align: center;
 }
 
@@ -254,22 +276,21 @@ header{
     align-items: start;
     justify-content: start;
     gap: 20px;
-    max-width: 70%;
+    width: 65%;
     padding: 16px;
     border-radius: 18px;
     border-top: 4px solid hsl(61, 70%, 52%);
-    height: auto;
     background-color: hsl(202, 55%, 16%);
     margin-top: 1rem;
 }
 
 .divider{
     border: 0.8px solid rgb(110, 110, 110);
-    min-width: 100%;
+    width: 100%;
 }
 
 .monthly-section, .total-section{
-    min-width: 100%;
+    width: 100%;
 }
 
 .monthly-desc, .total-desc{
@@ -280,7 +301,6 @@ header{
 .monthly-amount{
     font-size: 2.5rem;
     margin-top: 0.25rem;
-    width: 100%;
     color: hsl(61, 70%, 52%);
 }
 
@@ -293,6 +313,7 @@ header{
 .error{
     font-size: 0.75rem;
     color: hsl(4, 69%, 50%);
+    margin-top: 0.625rem;
 }
 
 .input-error{
@@ -302,4 +323,22 @@ header{
 .suffix-error{
     color: white;
     background-color: hsl(4, 69%, 50%);
+}
+
+/*  Media Queries For All Mobile Devices */
+
+@media (min-width: 320px) and (max-width: 600px) {
+    .calculator-platform{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .form-section, .results-section, .results-container2, .fee-section, .calculate-button{
+        width: 100%;
+    }
+
+    .header h1 {
+        font-size: 12px;
+    }
 }
