@@ -19,7 +19,7 @@
     calculateButton.addEventListener('click', () => {
         event.preventDefault();
         console.log('hello');
-        validateInputs();
+         validateInputs();
         checksActiveRadio();
     });
 
@@ -52,6 +52,7 @@
             displayError(container, 'This field is required');
             mortgageAmount.classList.add('input-error');
             currencySymbol.style.backgroundColor = 'hsl(4, 69%, 50%)';
+            currencySymbol.style.color = 'hsl(0, 0%, 100%)';
         }
 
         if (termInput === '') {
@@ -239,12 +240,15 @@
             mortgageTerm.classList.remove('input-error');
             interestRate.classList.remove('input-error');
             currencySymbol.style.backgroundColor = 'hsl(202, 86%, 94%)';
+            currencySymbol.style.color = 'hsl(187, 24%, 22%)';
 
             suffix.forEach((suffix) => {
                 suffix.classList.remove(`suffix-error`);
             });
             
             resultsWrapper.appendChild(resultContainer);
+        } else {
+            resultSection.style.display = 'flex';
         }
     }
 
@@ -284,6 +288,7 @@
         });
 
         currencySymbol.style.backgroundColor = 'hsl(202, 86%, 94%)';
+        currencySymbol.style.color = 'hsl(187, 24%, 22%)';
 
         resultSection.style.display = 'flex';
         resultsWrapper.style.display = 'none';

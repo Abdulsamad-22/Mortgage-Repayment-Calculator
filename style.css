@@ -53,9 +53,9 @@ header{
 
 .input-container{
     position: relative;
+    top: 0.5rem;
     display: flex;
     align-items: center;
-    /*min-width: fit-content;*/
 }
 
 .mortgage-amount{
@@ -77,18 +77,12 @@ header{
     cursor: pointer;
 }
 
-.amount-input-container{
-    display: flex;
-    flex-direction: column;
-    margin-top: 1rem;
-}
-
 .term-rate-containers{
     display: flex;
     align-items: flex-start;
     gap: 10px;
     width: 90%;
-    margin-top: 1rem;
+    margin-bottom: 1rem;
     padding-bottom: 0.5rem;
 }
 
@@ -97,6 +91,7 @@ header{
 }
 
 .field-labels{
+    margin-bottom: 0.5rem;
     color: hsl(202, 55%, 16%);
 }
 
@@ -123,7 +118,7 @@ header{
 .mortgageType-container{
     display: flex;
     flex-direction: column;
-    margin-top: 1rem;
+    margin-bottom: 1.5rem;
     padding-bottom: 0.5rem;
     
     border: none;
@@ -134,9 +129,9 @@ header{
     width: 90%;
     border: 1px solid hsl(186, 15%, 59%);
     border-radius: 8px;
-    padding: 0.5625rem 0.75rem;
+    padding: 0.625rem 0.75rem;
     cursor: pointer;
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.75rem;
 }
 
 .radio{
@@ -186,10 +181,6 @@ header{
 
 .mortgage-types{
     margin-top: 0rem;
-}
-
-.type-container{
-    margin-top: 0.75rem;
 }
 
 .active{
@@ -313,7 +304,11 @@ header{
 .error{
     font-size: 0.75rem;
     color: hsl(4, 69%, 50%);
-    margin-top: 0.625rem;
+    margin-top: 1rem;
+}
+
+.error2 {
+    background-color: hsl(4, 69%, 50%);
 }
 
 .input-error{
@@ -331,28 +326,53 @@ header{
     .calculator-platform{
         display: flex;
         flex-direction: column;
+        border-radius: 0;
         width: 100%;
+        height: 100vh;
+        margin: 0.5rem 0 0 0;
     }
 
-    .form-section, header, .results-section, .results-container2, .fee-section, .calculate-button, .term-rate-containers, .type-container, .mortgage-amount{
+    .form-section, header, .results-section, .results-container2, 
+    .fee-section, .calculate-button, .term-rate-containers,
+     .type-container, .mortgage-amount{
         width: 100%;
     }
 
     .form-section{
-        padding: 2rem 1.5rem;
-        /* margin-bottom: 2rem; */
+        padding: 3rem 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .mortgage-amount, .term-input, .interest-input,
+     .type-container, .calculate-button {
+        padding: 0.75rem;
+        align-items: center;
+    }
+    
+    .mortgage-amount {
+        padding-left: 2.6rem;
     }
 
     .title {
         font-size: 1.125rem;
     }
 
-    .field-labels, .currency-symbol, .suffix, .type-container {
+    .field-labels, .type-container {
+        font-size: 0.875rem; 
+
+    }
+
+    .currency-symbol {
+        padding: 0.875rem;
+    }
+
+    .suffix {
+        padding: 0.75rem;
         font-size: 0.875rem;
     }
 
-    .form-group, .term-rate-containers, .mortgageType-container{
-        margin-bottom: 0.75rem;
+    .form-group, .term-rate-containers{
+        margin-bottom: 1.5rem;
     }
 
     .results-section, .results-container2 {
