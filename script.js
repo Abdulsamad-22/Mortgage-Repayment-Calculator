@@ -34,6 +34,55 @@
         }
     }
 
+    const mortgageAmount = document.querySelector('.mortgage-amount');
+
+    const mortgageTerm = document.querySelector('.term-input');
+
+    const interestRate = document.querySelector('.interest-input');
+
+    // Adds active state to the amount currency suffix
+
+    mortgageAmount.addEventListener('focus', () => {;
+        currencySymbol.style.backgroundColor = '#d7da2f';
+        currencySymbol.style.color = '#122f3f';
+    });
+    
+    // Removes active state to the amount currency suffix
+    mortgageAmount.addEventListener('blur', () => {
+        currencySymbol.style.backgroundColor = '';
+        currencySymbol.style.color = '';
+    });
+
+
+    suffix.forEach((span, index) => {
+         // Adds active state to the term suffix
+        if (index === 0) {
+            mortgageTerm.addEventListener('focus', () => {
+                span.style.backgroundColor = '#d7da2f';
+                span.style.color = '#122f3f';
+            });
+
+            // Removes active state to the term suffix
+            mortgageTerm.addEventListener('blur', () => {
+                span.style.backgroundColor = '';
+                span.style.color = '';
+            });
+
+         // Adds active state to the rate suffix
+        } else if (index === 1) {
+            interestRate.addEventListener('focus', () => {
+                span.style.backgroundColor = '#d7da2f';
+                span.style.color = '#122f3f';
+            });
+
+            // Removes active state to the rate suffix
+            interestRate.addEventListener('blur', () => {
+                span.style.backgroundColor = '';
+                span.style.color = '';
+            });
+        }
+    });
+
     function validateInputs() {
         const mortgageAmount = document.querySelector('.mortgage-amount');
         const mortgageTerm = document.querySelector('.term-input');
@@ -48,7 +97,7 @@
         termContainer.querySelectorAll('.error').forEach(msg => {msg.remove();});
         rateContainer.querySelectorAll('.error').forEach(msg => {msg.remove();});
 
-        if (amountInput === '' || amountInput < 0) {
+        if (amountInput === ''|| parseFloat(amountInput) < 0) {
             displayError(container, 'This field is required');
             mortgageAmount.classList.add('input-error');
             currencySymbol.style.backgroundColor = 'hsl(4, 69%, 50%)';
@@ -224,7 +273,7 @@
                 </div>
             `;
 
-            resultsWrapper.innerHTML = '';
+            resultsWrapper.style.display = 'none';
 
             if (amountInput < 0 || termInput < 0 || rateInput < 0) {
                 console.log('invalid input');
